@@ -1,0 +1,10 @@
+image: java:8
+
+options:
+  max-time: 10
+
+pipelines:
+  default:
+    - step:
+        script:
+          - bash ./gradlew build
