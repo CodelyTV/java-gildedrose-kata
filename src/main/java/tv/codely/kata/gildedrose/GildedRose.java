@@ -25,11 +25,9 @@ class GildedRose {
                 if (item.sellIn < 6) {
                     increaseQuality(item);
                 }
+            } else if (item.name.equals(SULFURAS)) {
             } else {
-                if (item.name.equals(SULFURAS)) {
-                } else {
-                    decreaseQuality(item);
-                }
+                decreaseQuality(item);
             }
 
             if (item.name.equals(SULFURAS)) {
