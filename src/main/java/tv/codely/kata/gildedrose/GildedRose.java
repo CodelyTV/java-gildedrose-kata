@@ -37,7 +37,7 @@ class GildedRose {
                     }
 
                     if (item.sellIn < 0) {
-                        item.quality = 0;
+                        resetQuality(item);
                     }
                     break;
                 case SULFURAS:
@@ -51,6 +51,10 @@ class GildedRose {
                     break;
             }
         }
+    }
+
+    private void resetQuality(Item item) {
+        item.quality = 0;
     }
 
     private void increaseQuality(Item item) {
