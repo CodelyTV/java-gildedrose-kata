@@ -13,8 +13,7 @@ class GildedRose {
 
     void updateQuality() {
         for (Item item : items) {
-            if (item.name.equals(SULFURAS)) {
-            } else {
+            if (!item.name.equals(SULFURAS)) {
                 item.sellIn -= 1;
             }
 
