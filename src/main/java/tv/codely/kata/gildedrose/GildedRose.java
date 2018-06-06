@@ -5,6 +5,17 @@ class GildedRose {
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
+    private static final int AGED_BRIE_DOUBLE_QUALITY_DECREMENT_SELL_IN_THRESHOLD = 0;
+
+    private static final int BACKSTAGE_PASSES_DOUBLE_QUALITY_INCREASE_SELL_IN_THRESHOLD = 10;
+    private static final int BACKSTAGE_PASSES_TRIPLE_QUALITY_INCREASE_SELL_IN_THRESHOLD = 5;
+    private static final int BACKSTAGE_PASSES_QUALITY_RESET_SELL_IN_THRESHOLD = 0;
+
+    private static final int DEFAULT_ITEM_DOUBLE_QUALITY_DECREASE_SELL_IN_THRESHOLD = 0;
+    
+    private static final int MAX_QUALITY = 50;
+    private static final int MIN_QUALITY = 0;
+
     private Item[] items;
 
     GildedRose(Item[] items) {
@@ -40,7 +51,7 @@ class GildedRose {
     private void updateAgedBrieQuality(Item item) {
         increaseQuality(item);
 
-        if (item.sellIn < 0) {
+        if (item.sellIn < AGED_BRIE_DOUBLE_QUALITY_DECREMENT_SELL_IN_THRESHOLD) {
             increaseQuality(item);
         }
     }
@@ -48,15 +59,15 @@ class GildedRose {
     private void updateBackstagePassesQuality(Item item) {
         increaseQuality(item);
 
-        if (item.sellIn < 10) {
+        if (item.sellIn < BACKSTAGE_PASSES_DOUBLE_QUALITY_INCREASE_SELL_IN_THRESHOLD) {
             increaseQuality(item);
         }
 
-        if (item.sellIn < 5) {
+        if (item.sellIn < BACKSTAGE_PASSES_TRIPLE_QUALITY_INCREASE_SELL_IN_THRESHOLD) {
             increaseQuality(item);
         }
 
-        if (item.sellIn < 0) {
+        if (item.sellIn < BACKSTAGE_PASSES_QUALITY_RESET_SELL_IN_THRESHOLD) {
             resetQuality(item);
         }
     }
@@ -64,7 +75,7 @@ class GildedRose {
     private void updateDefaultItemQuality(Item item) {
         decreaseQuality(item);
 
-        if (item.sellIn < 0) {
+        if (item.sellIn < DEFAULT_ITEM_DOUBLE_QUALITY_DECREASE_SELL_IN_THRESHOLD) {
             decreaseQuality(item);
         }
     }
@@ -74,13 +85,13 @@ class GildedRose {
     }
 
     private void increaseQuality(Item item) {
-        if (item.quality < 50) {
+        if (item.quality < MAX_QUALITY) {
             item.quality += 1;
         }
     }
 
     private void decreaseQuality(Item item) {
-        if (item.quality > 0) {
+        if (item.quality > MIN_QUALITY) {
             item.quality -= 1;
         }
     }
