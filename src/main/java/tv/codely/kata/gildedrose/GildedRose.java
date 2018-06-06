@@ -14,42 +14,58 @@ class GildedRose {
     void updateQuality() {
         for (Item item : items) {
             if (!item.name.equals(SULFURAS)) {
-                item.sellIn -= 1;
+                decreaseSellIn(item);
             }
 
             switch (item.name) {
                 case AGED_BRIE:
-                    increaseQuality(item);
-
-                    if (item.sellIn < 0) {
-                        increaseQuality(item);
-                    }
+                    updateAgedBrieQuality(item);
                     break;
                 case BACKSTAGE_PASSES:
-                    increaseQuality(item);
-
-                    if (item.sellIn < 10) {
-                        increaseQuality(item);
-                    }
-
-                    if (item.sellIn < 5) {
-                        increaseQuality(item);
-                    }
-
-                    if (item.sellIn < 0) {
-                        resetQuality(item);
-                    }
+                    updateBackstagePassesQuality(item);
                     break;
                 case SULFURAS:
                     break;
                 default:
-                    decreaseQuality(item);
-
-                    if (item.sellIn < 0) {
-                        decreaseQuality(item);
-                    }
+                    updateDefaultItemQuality(item);
                     break;
             }
+        }
+    }
+
+    private void decreaseSellIn(Item item) {
+        item.sellIn -= 1;
+    }
+
+    private void updateAgedBrieQuality(Item item) {
+        increaseQuality(item);
+
+        if (item.sellIn < 0) {
+            increaseQuality(item);
+        }
+    }
+
+    private void updateBackstagePassesQuality(Item item) {
+        increaseQuality(item);
+
+        if (item.sellIn < 10) {
+            increaseQuality(item);
+        }
+
+        if (item.sellIn < 5) {
+            increaseQuality(item);
+        }
+
+        if (item.sellIn < 0) {
+            resetQuality(item);
+        }
+    }
+
+    private void updateDefaultItemQuality(Item item) {
+        decreaseQuality(item);
+
+        if (item.sellIn < 0) {
+            decreaseQuality(item);
         }
     }
 
