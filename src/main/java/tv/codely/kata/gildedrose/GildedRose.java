@@ -28,9 +28,7 @@ class GildedRose {
             } else {
                 if (item.name.equals(SULFURAS)) {
                 } else {
-                    if (item.quality > 0) {
-                        item.quality -= 1;
-                    }
+                    decreaseQuality(item);
                 }
             }
 
@@ -49,9 +47,7 @@ class GildedRose {
                         if (item.name.equals(SULFURAS)) {
                             continue;
                         }
-                        if (item.quality > 0) {
-                            item.quality -= 1;
-                        }
+                        decreaseQuality(item);
                     }
                 }
             }
@@ -61,6 +57,12 @@ class GildedRose {
     private void increaseQuality(Item item) {
         if (item.quality < 50) {
             item.quality += 1;
+        }
+    }
+
+    private void decreaseQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality -= 1;
         }
     }
 }
