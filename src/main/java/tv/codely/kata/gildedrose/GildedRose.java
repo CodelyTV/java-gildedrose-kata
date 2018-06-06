@@ -5,13 +5,13 @@ class GildedRose {
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
-    Item[] items;
+    private Item[] items;
 
-    public GildedRose(Item[] items) {
+    GildedRose(Item[] items) {
         this.items = items;
     }
 
-    public void updateQuality() {
+    void updateQuality() {
         for (Item item : items) {
             if (!item.name.equals(AGED_BRIE)
                     && !item.name.equals(BACKSTAGE_PASSES)) {
@@ -53,7 +53,7 @@ class GildedRose {
                             }
                         }
                     } else {
-                        item.quality = item.quality - item.quality;
+                        item.quality = 0;
                     }
                 } else {
                     if (item.quality < 50) {
