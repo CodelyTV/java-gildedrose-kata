@@ -1,12 +1,15 @@
-# Java Bootstrap (base / project skeleton)
+# CodelyTV Gilded Rose kata solution
 
 ## Introduction
 
-This is a repository intended to serve as a starting point if you want to bootstrap a project in Java 8 with JUnit 5.2 and Gradle 4.6.
+Solution proposal for the Gilded Rose kata.
+
+Restrictions taken into account:
+* We can't modify the `Item` class 
 
 ## How To Start
 
 1. Install Java 8
-2. Clone this repository `git clone https://github.com/CodelyTV/java-bootstrap`.
+2. Clone this repository `git clone https://bitbucket.org/codelytv/gildedrose`.
 3. Run the tests with `./gradlew test`
-4. Start developing!
+4. Start refactoring!

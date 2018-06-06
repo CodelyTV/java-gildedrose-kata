@@ -6,5 +6,7 @@ options:
 pipelines:
   default:
     - step:
+        caches:
+          - gradle
         script:
           - bash ./gradlew build
