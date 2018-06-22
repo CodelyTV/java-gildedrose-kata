@@ -4,7 +4,7 @@ abstract class UpdatableItem extends Item {
     private static final int MAX_QUALITY = 50;
     private static final int MIN_QUALITY = 0;
 
-    protected Item item;
+    Item item;
 
     UpdatableItem(Item item) {
         super(item.name, item.sellIn, item.quality);
