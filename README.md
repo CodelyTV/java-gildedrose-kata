@@ -5,7 +5,7 @@
 Solution proposal for the Gilded Rose kata.
 
 Restrictions taken into account:
-* We can't modify the `Item` class even through inheritance or wrappers. All the algorithm in order to update the items should be contained inside the `GildedRose` class.  
+* We can't modify the `Item` class. However, we can use inheritance or wrappers in order to add or modify its behaviour.  
 
 ## How To Start
 
