@@ -4,7 +4,7 @@ abstract class UpdatableItem extends Item {
     private static final int MAX_QUALITY = 50;
     private static final int MIN_QUALITY = 0;
 
-    Item item;
+    private Item item;
 
     UpdatableItem(Item item) {
         super(item.name, item.sellIn, item.quality);
@@ -13,6 +13,10 @@ abstract class UpdatableItem extends Item {
     }
 
     abstract void update();
+
+    int sellIn() {
+        return item.sellIn;
+    }
 
     void decreaseSellIn() {
         item.sellIn -= 1;
@@ -28,5 +32,9 @@ abstract class UpdatableItem extends Item {
         if (item.quality > MIN_QUALITY) {
             item.quality -= 1;
         }
+    }
+
+    void resetQuality() {
+        item.quality = 0;
     }
 }
