@@ -8,19 +8,17 @@ public class GildedRoseCliEntryPoint {
         System.out.println("OMGHAI!");
 
         List<Item> items = Arrays.asList(
-                new Item("+5 Dexterity Vest", 10, 20), //
-                new Item("Aged Brie", 2, 0), //
-                new Item("Elixir of the Mongoose", 5, 7), //
-                new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-                new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+                ItemFactory.basedOn("+5 Dexterity Vest", 10, 20), //
+                ItemFactory.basedOn("Aged Brie", 2, 0), //
+                ItemFactory.basedOn("Elixir of the Mongoose", 5, 7), //
+                ItemFactory.basedOn("Sulfuras, Hand of Ragnaros", 0, 80), //
+                ItemFactory.basedOn("Sulfuras, Hand of Ragnaros", -1, 80),
+                ItemFactory.basedOn("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+                ItemFactory.basedOn("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+                ItemFactory.basedOn("Backstage passes to a TAFKAL80ETC concert", 5, 49),
                 // this conjured item does not work properly yet
-                new Item("Conjured Mana Cake", 3, 6)
+                ItemFactory.basedOn("Conjured Mana Cake", 3, 6)
         );
-
-        List<UpdatableItem> updatableItems = UpdatableItemFactory.basedOn(items);
 
         GildedRose app = new GildedRose();
 
@@ -36,7 +34,7 @@ public class GildedRoseCliEntryPoint {
                 System.out.println(item);
             }
             System.out.println();
-            app.updateQuality(updatableItems);
+            app.updateQuality(items);
         }
     }
 

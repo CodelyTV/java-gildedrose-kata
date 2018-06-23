@@ -1,10 +1,10 @@
 package tv.codely.kata.gildedrose;
 
-final class StandardItem extends UpdatableItem {
+final class StandardItem extends Item {
     private static final int DOUBLE_QUALITY_DECREASE_SELL_IN_THRESHOLD = 0;
 
-    StandardItem(Item item) {
-        super(item);
+    StandardItem(final String name, final int sellIn, final int quality) {
+        super(name, sellIn, quality);
     }
 
     @Override

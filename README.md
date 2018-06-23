@@ -4,9 +4,6 @@
 
 Solution proposal for the Gilded Rose kata.
 
-Restrictions taken into account:
-* We can't modify the `Item` class. However, we can use inheritance or wrappers in order to add or modify its behaviour.  
-
 ## How To Start
 
 1. Install Java 8

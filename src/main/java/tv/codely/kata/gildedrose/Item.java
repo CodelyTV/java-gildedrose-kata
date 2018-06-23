@@ -1,17 +1,49 @@
 package tv.codely.kata.gildedrose;
 
-public class Item {
+abstract class Item {
+    private static final int MAX_QUALITY = 50;
+    private static final int MIN_QUALITY = 0;
 
-    public String name;
+    private String name;
 
-    public int sellIn;
+    private int sellIn;
 
-    public int quality;
+    private int quality;
 
-    public Item(String name, int sellIn, int quality) {
+    Item(final String name, final int sellIn, final int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+    }
+
+    abstract void update();
+
+    int sellIn() {
+        return sellIn;
+    }
+
+    int quality() {
+        return quality;
+    }
+
+    void decreaseSellIn() {
+        sellIn -= 1;
+    }
+
+    void increaseQuality() {
+        if (quality < MAX_QUALITY) {
+            quality += 1;
+        }
+    }
+
+    void decreaseQuality() {
+        if (quality > MIN_QUALITY) {
+            quality -= 1;
+        }
+    }
+
+    void resetQuality() {
+        quality = 0;
     }
 
     @Override

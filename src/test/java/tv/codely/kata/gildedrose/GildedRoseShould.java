@@ -8,131 +8,120 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GildedRoseShould {
-    private List<UpdatableItem> listOf(UpdatableItem item) {
-        return new ArrayList<UpdatableItem>(){{
+    private List<Item> listOf(Item item) {
+        return new ArrayList<Item>(){{
             add(item);
         }};
     }
 
     @Test
     public void testThatSellInValueIsDecreased() {
-        Item whateverItem = new Item("whatever", 10, 0);
-        UpdatableItem updatableItem = UpdatableItemFactory.basedOn(whateverItem);
+        Item whateverItem = ItemFactory.basedOn("whatever", 10, 0);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableItem));
+        gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(9, whateverItem.sellIn);
+        assertEquals(9, whateverItem.sellIn());
     }
 
     @Test
     public void testThatQualityValueIsDecreased() {
-        Item whateverItem = new Item("whatever", 1, 10);
-        UpdatableItem updatableItem = UpdatableItemFactory.basedOn(whateverItem);
+        Item whateverItem = ItemFactory.basedOn("whatever", 1, 10);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableItem));
+        gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(9, whateverItem.quality);
+        assertEquals(9, whateverItem.quality());
     }
 
     @Test
     public void testThatQualityDecreasesTwiceAsMuchWhenSellByIsPassed() {
-        Item whateverItem = new Item("whatever", 0, 10);
-        UpdatableItem updatableItem = UpdatableItemFactory.basedOn(whateverItem);
+        Item whateverItem = ItemFactory.basedOn("whatever", 0, 10);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableItem));
+        gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(8, whateverItem.quality);
+        assertEquals(8, whateverItem.quality());
     }
 
     @Test
     public void testThatQualityIsNeverNegative() {
-        Item whateverItem = new Item("whatever", 0, 0);
-        UpdatableItem updatableItem = UpdatableItemFactory.basedOn(whateverItem);
+        Item whateverItem = ItemFactory.basedOn("whatever", 0, 0);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableItem));
+        gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(0, whateverItem.quality);
+        assertEquals(0, whateverItem.quality());
     }
 
     @Test
     public void testAgedBrieIncreasesQualityWithAge() {
-        Item agedBrie = new Item("Aged Brie", 5, 1);
-        UpdatableItem updatableAgedBrie = UpdatableItemFactory.basedOn(agedBrie);
+        Item agedBrie = ItemFactory.basedOn("Aged Brie", 5, 1);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableAgedBrie));
+        gildedRose.updateQuality(listOf(agedBrie));
 
-        assertEquals(2, agedBrie.quality);
+        assertEquals(2, agedBrie.quality());
     }
 
     @Test
     public void testQualityNeverIncreasesPastFifty() {
-        Item agedBrie = new Item("Aged Brie", 5, 50);
-        UpdatableItem updatableAgedBrie = UpdatableItemFactory.basedOn(agedBrie);
+        Item agedBrie = ItemFactory.basedOn("Aged Brie", 5, 50);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableAgedBrie));
+        gildedRose.updateQuality(listOf(agedBrie));
 
-        assertEquals(50, agedBrie.quality);
+        assertEquals(50, agedBrie.quality());
     }
 
     @Test
     public void testSulfurasNeverChanges() {
-        Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 25);
-        UpdatableItem updatableSulfuras = UpdatableItemFactory.basedOn(sulfuras);
+        Item sulfuras = ItemFactory.basedOn("Sulfuras, Hand of Ragnaros", 0, 25);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableSulfuras));
+        gildedRose.updateQuality(listOf(sulfuras));
 
-        assertEquals(25, sulfuras.quality);
-        assertEquals(0, sulfuras.sellIn);
+        assertEquals(25, sulfuras.quality());
+        assertEquals(0, sulfuras.sellIn());
     }
 
     @Test
     public void testBackstagePassIncreasesQualityByOneIfSellByGreaterThenTen() {
-        Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 20);
-        UpdatableItem updatableBackstagePasses = UpdatableItemFactory.basedOn(backstagePasses);
+        Item backstagePasses = ItemFactory.basedOn("Backstage passes to a TAFKAL80ETC concert", 11, 20);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableBackstagePasses));
+        gildedRose.updateQuality(listOf(backstagePasses));
 
-        assertEquals(21, backstagePasses.quality);
+        assertEquals(21, backstagePasses.quality());
     }
 
     @Test
     public void testBackstagePassIncreasesQualityByTwoIfSellBySmallerThanTen() {
-        Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 6, 20);
-        UpdatableItem updatableBackstagePasses = UpdatableItemFactory.basedOn(backstagePasses);
+        Item backstagePasses = ItemFactory.basedOn("Backstage passes to a TAFKAL80ETC concert", 6, 20);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableBackstagePasses));
+        gildedRose.updateQuality(listOf(backstagePasses));
 
-        assertEquals(22, backstagePasses.quality);
+        assertEquals(22, backstagePasses.quality());
     }
 
     @Test
     public void testBackstagePassIncreasesQualityByThreeIfSellBySmallerThanFive() {
-        Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20);
-        UpdatableItem updatableBackstagePasses = UpdatableItemFactory.basedOn(backstagePasses);
+        Item backstagePasses = ItemFactory.basedOn("Backstage passes to a TAFKAL80ETC concert", 5, 20);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableBackstagePasses));
+        gildedRose.updateQuality(listOf(backstagePasses));
 
-        assertEquals(23, backstagePasses.quality);
+        assertEquals(23, backstagePasses.quality());
     }
 
     @Test
     public void testBackstagePassLosesValueAfterSellByPasses() {
-        Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20);
-        UpdatableItem updatableBackstagePasses = UpdatableItemFactory.basedOn(backstagePasses);
+        Item backstagePasses = ItemFactory.basedOn("Backstage passes to a TAFKAL80ETC concert", 0, 20);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableBackstagePasses));
+        gildedRose.updateQuality(listOf(backstagePasses));
 
-        assertEquals(0, backstagePasses.quality);
+        assertEquals(0, backstagePasses.quality());
     }
 }
