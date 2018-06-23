@@ -4,13 +4,13 @@ abstract class Item {
     private static final int MAX_QUALITY = 50;
     private static final int MIN_QUALITY = 0;
 
-    private String name;
+    private ItemName name;
 
     private int sellIn;
 
     private int quality;
 
-    Item(final String name, final int sellIn, final int quality) {
+    Item(final ItemName name, final int sellIn, final int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;

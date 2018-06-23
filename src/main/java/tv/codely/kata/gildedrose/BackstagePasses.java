@@ -5,7 +5,7 @@ final class BackstagePasses extends Item {
     private static final int TRIPLE_QUALITY_INCREASE_SELL_IN_THRESHOLD = 5;
     private static final int QUALITY_RESET_SELL_IN_THRESHOLD = 0;
 
-    BackstagePasses(final String name, final int sellIn, final int quality) {
+    BackstagePasses(final ItemName name, final int sellIn, final int quality) {
         super(name, sellIn, quality);
     }
 
