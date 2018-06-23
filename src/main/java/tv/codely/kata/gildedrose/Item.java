@@ -6,11 +6,11 @@ abstract class Item {
 
     private ItemName name;
 
-    private int sellIn;
+    private ItemSellIn sellIn;
 
     private int quality;
 
-    Item(final ItemName name, final int sellIn, final int quality) {
+    Item(final ItemName name, final ItemSellIn sellIn, final int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
@@ -18,7 +18,7 @@ abstract class Item {
 
     abstract void update();
 
-    int sellIn() {
+    ItemSellIn sellIn() {
         return sellIn;
     }
 
@@ -27,7 +27,11 @@ abstract class Item {
     }
 
     void decreaseSellIn() {
-        sellIn -= 1;
+        sellIn = sellIn.decrease();
+    }
+
+    Boolean hasToBeSoldInLessThan(Integer days) {
+        return sellIn.isLessThan(days);
     }
 
     void increaseQuality() {

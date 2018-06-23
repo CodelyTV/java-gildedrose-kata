@@ -21,7 +21,8 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(9, whateverItem.sellIn());
+        ItemSellIn expectedSellIn = new ItemSellIn(9);
+        assertEquals(expectedSellIn, whateverItem.sellIn());
     }
 
     @Test
@@ -82,7 +83,9 @@ public class GildedRoseShould {
         gildedRose.updateQuality(listOf(sulfuras));
 
         assertEquals(25, sulfuras.quality());
-        assertEquals(0, sulfuras.sellIn());
+
+        ItemSellIn expectedSellIn = new ItemSellIn(0);
+        assertEquals(expectedSellIn, sulfuras.sellIn());
     }
 
     @Test
