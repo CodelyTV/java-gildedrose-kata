@@ -1,8 +1,10 @@
 package tv.codely.kata.gildedrose;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,8 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(9, whateverItem.quality());
+        ItemQuality expectedQuality = new ItemQuality(9);
+        assertEquals(expectedQuality, whateverItem.quality());
     }
 
     @Test
@@ -42,7 +45,8 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(8, whateverItem.quality());
+        ItemQuality expectedQuality = new ItemQuality(8);
+        assertEquals(expectedQuality, whateverItem.quality());
     }
 
     @Test
@@ -52,7 +56,8 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(0, whateverItem.quality());
+        ItemQuality expectedQuality = new ItemQuality(0);
+        assertEquals(expectedQuality, whateverItem.quality());
     }
 
     @Test
@@ -62,7 +67,8 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(agedBrie));
 
-        assertEquals(2, agedBrie.quality());
+        ItemQuality expectedQuality = new ItemQuality(2);
+        assertEquals(expectedQuality, agedBrie.quality());
     }
 
     @Test
@@ -72,7 +78,8 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(agedBrie));
 
-        assertEquals(50, agedBrie.quality());
+        ItemQuality expectedQuality = new ItemQuality(50);
+        assertEquals(expectedQuality, agedBrie.quality());
     }
 
     @Test
@@ -82,7 +89,8 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(sulfuras));
 
-        assertEquals(25, sulfuras.quality());
+        ItemQuality expectedQuality = new ItemQuality(25);
+        assertEquals(expectedQuality, sulfuras.quality());
 
         ItemSellIn expectedSellIn = new ItemSellIn(0);
         assertEquals(expectedSellIn, sulfuras.sellIn());
@@ -95,7 +103,8 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(backstagePasses));
 
-        assertEquals(21, backstagePasses.quality());
+        ItemQuality expectedQuality = new ItemQuality(21);
+        assertEquals(expectedQuality, backstagePasses.quality());
     }
 
     @Test
@@ -105,7 +114,8 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(backstagePasses));
 
-        assertEquals(22, backstagePasses.quality());
+        ItemQuality expectedQuality = new ItemQuality(22);
+        assertEquals(expectedQuality, backstagePasses.quality());
     }
 
     @Test
@@ -115,7 +125,8 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(backstagePasses));
 
-        assertEquals(23, backstagePasses.quality());
+        ItemQuality expectedQuality = new ItemQuality(23);
+        assertEquals(expectedQuality, backstagePasses.quality());
     }
 
     @Test
@@ -125,6 +136,21 @@ public class GildedRoseShould {
         GildedRose gildedRose = new GildedRose();
         gildedRose.updateQuality(listOf(backstagePasses));
 
-        assertEquals(0, backstagePasses.quality());
+        ItemQuality expectedQuality = new ItemQuality(0);
+        assertEquals(expectedQuality, backstagePasses.quality());
+    }
+
+    @Test
+    public void testQualityDoesNotAllowValuesBelowZero() {
+        Executable invalidInstantiation = () -> new ItemQuality(-1);
+
+        assertThrows(ItemQualityOutOfRangeException.class, invalidInstantiation);
+    }
+
+    @Test
+    public void testQualityDoesNotAllowValuesOverFifty() {
+        Executable invalidInstantiation = () -> new ItemQuality(51);
+
+        assertThrows(ItemQualityOutOfRangeException.class, invalidInstantiation);
     }
 }
