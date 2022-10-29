@@ -15,21 +15,22 @@ class GildedRose {
     for (Item item : items) {
       switch (item.name) {
         case ITEM_AGED_BRIE_NAME:
+          if (item.quality < 50) {
+            item.quality = item.quality + 1;
+          }
         case ITEM_BACKSTAGE_PASSES_NAME:
           if (item.quality < 50) {
             item.quality = item.quality + 1;
 
-            if (item.name.equals(ITEM_BACKSTAGE_PASSES_NAME)) {
-              if (item.sellIn < 11) {
-                if (item.quality < 50) {
-                  item.quality = item.quality + 1;
-                }
+            if (item.sellIn < 11) {
+              if (item.quality < 50) {
+                item.quality = item.quality + 1;
               }
+            }
 
-              if (item.sellIn < 6) {
-                if (item.quality < 50) {
-                  item.quality = item.quality + 1;
-                }
+            if (item.sellIn < 6) {
+              if (item.quality < 50) {
+                item.quality = item.quality + 1;
               }
             }
           }
