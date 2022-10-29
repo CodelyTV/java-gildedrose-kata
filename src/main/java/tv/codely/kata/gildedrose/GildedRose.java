@@ -15,44 +15,30 @@ class GildedRose {
     for (Item item : items) {
       switch (item.name) {
         case ITEM_AGED_BRIE_NAME:
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
+          increaseQuality(item);
         case ITEM_BACKSTAGE_PASSES_NAME:
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
-
-            if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
-            }
-
-            if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
-            }
+          increaseQuality(item);
+          if (item.sellIn < 11) {
+            increaseQuality(item);
+          }
+          if (item.sellIn < 6) {
+            increaseQuality(item);
           }
           break;
         case ITEM_SULFURAS_PASSES_NAME:
           break;
         default:
-          if (item.quality > 0) {
-            item.quality = item.quality - 1;
-          }
+          decreaseQuality(item);
       }
 
       if (!item.name.equals(ITEM_SULFURAS_PASSES_NAME)) {
-        item.sellIn = item.sellIn - 1;
+        decreaseSellIn(item);
       }
 
       if (item.sellIn < 0) {
         switch (item.name) {
           case ITEM_AGED_BRIE_NAME:
-            if (item.quality < 50) {
-              item.quality = item.quality + 1;
-            }
+            increaseQuality(item);
             break;
           case ITEM_BACKSTAGE_PASSES_NAME:
             item.quality = 0;
@@ -60,9 +46,7 @@ class GildedRose {
           case ITEM_SULFURAS_PASSES_NAME:
             break;
           default:
-            if (item.quality > 0) {
-              item.quality = item.quality - 1;
-            }
+            decreaseQuality(item);
         }
       }
     }
