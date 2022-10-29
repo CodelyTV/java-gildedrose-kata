@@ -13,14 +13,8 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (!item.name.equals(ITEM_AGED_BRIE_NAME)
-                    && !item.name.equals(ITEM_BACKSTAGE_PASSES_NAME)) {
-                if (item.quality > 0) {
-                    if (!item.name.equals(ITEM_SULFURAS_PASSES_NAME)) {
-                        item.quality = item.quality - 1;
-                    }
-                }
-            } else {
+            if (item.name.equals(ITEM_AGED_BRIE_NAME)
+                    || item.name.equals(ITEM_BACKSTAGE_PASSES_NAME)) {
                 if (item.quality < 50) {
                     item.quality = item.quality + 1;
 
@@ -38,6 +32,10 @@ class GildedRose {
                         }
                     }
                 }
+            } else if (!item.name.equals(ITEM_SULFURAS_PASSES_NAME)) {
+                if (item.quality > 0) {
+                    item.quality = item.quality - 1;
+                }
             }
 
             if (!item.name.equals(ITEM_SULFURAS_PASSES_NAME)) {
@@ -45,19 +43,17 @@ class GildedRose {
             }
 
             if (item.sellIn < 0) {
-                if (!item.name.equals(ITEM_AGED_BRIE_NAME)) {
-                    if (!item.name.equals(ITEM_BACKSTAGE_PASSES_NAME)) {
-                        if (item.quality > 0) {
-                            if (!item.name.equals(ITEM_SULFURAS_PASSES_NAME)) {
-                                item.quality = item.quality - 1;
-                            }
-                        }
-                    } else {
-                        item.quality = 0;
-                    }
-                } else {
+                if (item.name.equals(ITEM_AGED_BRIE_NAME)) {
                     if (item.quality < 50) {
                         item.quality = item.quality + 1;
+                    }
+                } else if (item.name.equals(ITEM_BACKSTAGE_PASSES_NAME)) {
+                    item.quality = 0;
+                } else {
+                    if (item.quality > 0) {
+                        if (!item.name.equals(ITEM_SULFURAS_PASSES_NAME)) {
+                            item.quality = item.quality - 1;
+                        }
                     }
                 }
             }
