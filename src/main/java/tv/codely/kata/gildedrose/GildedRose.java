@@ -5,7 +5,7 @@ class GildedRose {
   private static final String ITEM_AGED_BRIE_NAME = "Aged Brie";
   private static final String ITEM_BACKSTAGE_PASSES_NAME = "Backstage passes to a TAFKAL80ETC concert";
   private static final String ITEM_SULFURAS_PASSES_NAME = "Sulfuras, Hand of Ragnaros";
-  Item[] items;
+  private final Item[] items;
 
   public GildedRose(Item[] items) {
     this.items = items;
